@@ -5,7 +5,7 @@ class Employee {
         this.name = name
     }
 
-    displayInfo (){
+    displayInfo(){
         console.log("Name: ", this.name)
     }
 }
@@ -16,7 +16,7 @@ class Manager extends Employee {
         this.department = department
     }
 
-    displayInfo () {
+    displayInfo() {
         super.displayInfo()
         console.log("Department: ", this.department)
     }
@@ -34,6 +34,7 @@ console.log("Задание 2. \"\"Управление списком зака�
 class Order {
 
     _products = []
+
     constructor(orderNumber) {
         this.orderNumber = orderNumber
     }
@@ -41,17 +42,14 @@ class Order {
     get productList() {
         return this._products
     }
+
     addProduct(product) {
         this.productList.push(product)
     }
 
     getTotalPrice() {
-        let sum = 0
-        this.productList.forEach( (elem) => {
-            sum += elem.phonePrice
-            }
-        )
-        return sum
+        const totalPrice = this.productList.reduce((sum, item) => sum + item.productPrice, 0)
+        return totalPrice
     }
 
 }
@@ -62,11 +60,11 @@ class Product {
         this.price = price;
     }
 
-    get phonePrice() {
+    get productPrice() {
         return this.price
     }
 
-    get phoneName() {
+    get productName() {
         return this.name
     }
 }
@@ -81,6 +79,6 @@ order.addProduct(product2)
 
 console.log("Order spec:")
 order.productList.forEach( (elem) => {
-    console.log(elem.phoneName + ": " + elem.phonePrice)
+    console.log(elem.productName + ": " + elem.productPrice)
 })
 console.log("Total order: " + order.getTotalPrice())
